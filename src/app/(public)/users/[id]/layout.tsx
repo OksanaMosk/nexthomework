@@ -1,10 +1,10 @@
 import React from "react";
 
-type Props={
+type Props = {
     children: React.ReactNode;
 }
 
-const UserLayout= ({ children }:Props) => {
+const UserLayout = ({children}: Props) => {
     return (
         <>
             {children}

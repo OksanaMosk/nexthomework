@@ -23,7 +23,8 @@ const UserPage = async ({ params }: { params: Promise <{ id: string }> }) => {
     const {id, name, username, email, address, phone, website, company} = user
 
     return (
-        <div className="my-18 mx-auto self-center flex flex-col justify-between w-[800px] gap-3 text-white  bg-[#343632] hover:bg-white hover:text-black  box-border p-5 rounded-xl cursor-pointer  border-white border-[1px] ">
+        <div className="my-18 mx-auto self-center flex flex-col justify-between w-[800px] gap-3 text-white  bg-[#343632]  transition-all duration-300
+                   hover:bg-gradient-to-l hover:from-[#3af0f0] hover:to-inherit   box-border p-5 rounded-xl cursor-pointer  border-white border-[1px] ">
             <div className="flex justify-between shadow-[0_0_10px_rgba(255,_255,_255,_0.8)]  p-5 mt-2 text-[14px] rounded-xl hover:shadow-[0_0_10px_rgba(0,_0,_0,_0.8)]">
                 <div>
                     <h2 className="text-[18px] text-[#3af0f0]">{name}</h2>
