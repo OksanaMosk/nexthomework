@@ -13,7 +13,7 @@ const axiosInstance = axios.create({
 });
 
 export const addCar = async (car: ICar) => {
-    const path =  "/cars/api";
+    const path = isLocal ? "/cars/api" : "/cars";
     const response = await axiosInstance.post(path, car);
     return response.data;
 };

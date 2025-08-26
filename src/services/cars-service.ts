@@ -14,7 +14,7 @@ const axiosInstance = axios.create({
 });
 
 export const getAllCars = async (): Promise<ICar[]> => {
-    const path = "/cars/api";
+    const path = isLocal ? "/cars/api" : "/cars";
     const response = await axiosInstance.get(path);
     return response.data;
 };
