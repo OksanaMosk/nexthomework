@@ -6,7 +6,7 @@ const isLocal = process.env.NODE_ENV === 'development';
 
 const baseURL = isLocal
     ? process.env.NEXT_PUBLIC_API_BASE_URL_LOCAL
-    : process.env.NEXT_PUBLIC_API_BASE_URL_VERSEL;
+    : process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const axiosInstance = axios.create({
     baseURL,
