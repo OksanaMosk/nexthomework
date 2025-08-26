@@ -1,7 +1,7 @@
 import axios from "axios";
 import {ICar} from "@/models/ICar";
 
-const postEndpoint=process.env.NEXT_PUBLIC_API_BASE_URL_LOCAL
+const postEndpoint="http://localhost:3000"
 
 const axiosInstance = axios.create({
     baseURL: postEndpoint,
