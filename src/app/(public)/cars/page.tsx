@@ -1,3 +1,7 @@
+
+export const dynamic = "force-dynamic";
+
+
 import React from 'react';
 import CarsComponent from "@/components/cars-component/CarsComponent";
 
