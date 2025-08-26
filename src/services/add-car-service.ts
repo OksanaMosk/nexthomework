@@ -1,14 +1,19 @@
 import axios from "axios";
 import {ICar} from "@/models/ICar";
 
-const postEndpoint="http://localhost:3000"
+const isLocal = process.env.NODE_ENV === 'development';
+
+const baseURL = isLocal
+    ? process.env.NEXT_PUBLIC_API_BASE_URL_LOCAL
+    : process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const axiosInstance = axios.create({
-    baseURL: postEndpoint,
-    headers: {'Content-Type': 'application/json'},
-})
+    baseURL,
+    headers: { 'Content-Type': 'application/json' },
+});
 
-export const addCar= async (car:ICar)=> {
-    const response= await axiosInstance.post("/cars/api", car)
+export const addCar = async (car: ICar) => {
+    const path = isLocal ? "/cars/api" : "/cars";
+    const response = await axiosInstance.post(path, car);
     return response.data;
-}
+};

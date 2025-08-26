@@ -1,15 +1,20 @@
 
 import {ICar} from "@/models/ICar";
 import axios from "axios";
-const endpoint="http://localhost:3000"
 
+const isLocal = process.env.NODE_ENV === 'development';
+
+const baseURL = isLocal
+    ? process.env.NEXT_PUBLIC_API_BASE_URL_LOCAL
+    : process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const axiosInstance = axios.create({
-   baseURL: endpoint,
-   headers: {'Content-Type': 'application/json'},
-})
+    baseURL,
+    headers: { 'Content-Type': 'application/json' },
+});
 
-export const getAllCars= async (): Promise<ICar[]> => {
-  const response= await axiosInstance.get("/cars/api")
-   return response.data
-}
+export const getAllCars = async (): Promise<ICar[]> => {
+    const path = isLocal ? "/cars/api" : "/cars";
+    const response = await axiosInstance.get(path);
+    return response.data;
+};
