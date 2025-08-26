@@ -1,5 +1,5 @@
 import { ICar } from "@/models/ICar";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 const isLocal = process.env.NODE_ENV === "development";
 
@@ -18,12 +18,18 @@ export const getAllCars = async (): Promise<ICar[]> => {
     try {
         const response = await axiosInstance.get(path);
         return response.data;
-    } catch (error: any) {
-        console.error("Failed to fetch cars:", {
-            message: error?.message,
-            status: error?.response?.status,
-            url: `${baseURL}${path}`,
-        });
+    } catch (error: unknown) {
+        if (axios.isAxiosError(error)) {
+            const axiosError = error as AxiosError;
+
+            console.error("Failed to fetch cars:", {
+                message: axiosError.message,
+                status: axiosError.response?.status,
+                url: `${baseURL}${path}`,
+            });
+        } else {
+            console.error("Unknown error fetching cars:", error);
+        }
 
         return [];
     }
