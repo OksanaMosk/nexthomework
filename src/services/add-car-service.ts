@@ -5,7 +5,7 @@ const isLocal = process.env.NODE_ENV === 'development';
 
 const baseURL = isLocal
     ? process.env.NEXT_PUBLIC_API_BASE_URL_LOCAL
-    : process.env.NEXT_PUBLIC_API_BASE_URL;
+    : process.env.NEXT_PUBLIC_API_BASE_URL_VERSEL;
 
 const axiosInstance = axios.create({
     baseURL,
@@ -13,7 +13,7 @@ const axiosInstance = axios.create({
 });
 
 export const addCar = async (car: ICar) => {
-    const path = isLocal ? "/cars/api" : "/cars";
+    const path =  "/cars/api";
     const response = await axiosInstance.post(path, car);
     return response.data;
 };
