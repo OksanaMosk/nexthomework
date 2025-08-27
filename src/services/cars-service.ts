@@ -10,7 +10,7 @@ export const getAllCars = async (): Promise<ICar[]> => {
     const path = "/cars/api";
 
     try {
-        const response = await fetch(`${baseURL}${path}`, {
+        const response = await fetch(path, {
             headers: { "Content-Type": "application/json" },
             next: { revalidate: 3 },
         });
