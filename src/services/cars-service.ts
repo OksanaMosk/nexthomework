@@ -10,14 +10,14 @@ export const getAllCars = async (): Promise<ICar[]> => {
     const path = "/cars/api";
 
     try {
-      /*  const response = await fetch("https://nexthomework-svvo-git-hw2-oksanamosks-projects.vercel.app/cars/api", {
-            headers: { "Content-Type": "application/json" },
-            next: { revalidate: 3 },
-        });*/
-        const response = await fetch(`${baseURL}${path}`, {
+        const response = await fetch("https://nexthomework-svvo-git-hw2-oksanamosks-projects.vercel.app/cars/api", {
             headers: { "Content-Type": "application/json" },
             next: { revalidate: 3 },
         });
+        // const response = await fetch(`${baseURL}${path}`, {
+        //     headers: { "Content-Type": "application/json" },
+        //     next: { revalidate: 3 },
+        // });
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
