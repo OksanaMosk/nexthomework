@@ -14,7 +14,7 @@ export const getAllCars = async (): Promise<ICar[]> => {
     try {
         const response = await fetch(`${baseURL}${path}`, {
             headers: { "Content-Type": "application/json" },
-            next: { revalidate: 3 },
+            next: { revalidate: 1 },
         });
 
         if (!response.ok) {
