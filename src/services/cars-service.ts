@@ -1,36 +1,28 @@
 import { ICar } from "@/models/ICar";
-import axios, { AxiosError } from "axios";
-
-const isLocal = process.env.NODE_ENV === "development";
-
-const baseURL = isLocal
-    ? process.env.NEXT_PUBLIC_API_BASE_URL_LOCAL
-    : process.env.NEXT_PUBLIC_API_BASE_URL_VERSEL;
-
-const axiosInstance = axios.create({
-    baseURL,
-    headers: { "Content-Type": "application/json" },
-});
 
 export const getAllCars = async (): Promise<ICar[]> => {
+    const isLocal = process.env.NODE_ENV === "development";
+
+    const baseURL = isLocal
+        ? process.env.NEXT_PUBLIC_API_BASE_URL_LOCAL
+        : process.env.NEXT_PUBLIC_API_BASE_URL_VERSEL;
+
     const path = "/cars/api";
 
     try {
-        const response = await axiosInstance.get(path);
-        return response.data;
-    } catch (error: unknown) {
-        if (axios.isAxiosError(error)) {
-            const axiosError = error as AxiosError;
+        const response = await fetch(`${baseURL}${path}`, {
+            headers: { "Content-Type": "application/json" },
+            next: { revalidate: 3 },
+        });
 
-            console.error("Failed to fetch cars:", {
-                message: axiosError.message,
-                status: axiosError.response?.status,
-                url: `${baseURL}${path}`,
-            });
-        } else {
-            console.error("Unknown error fetching cars:", error);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
 
+        const data: ICar[] = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Failed to fetch cars:", error);
         return [];
     }
 };
