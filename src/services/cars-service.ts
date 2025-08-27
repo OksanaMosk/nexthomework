@@ -20,12 +20,9 @@ export const getAllCars = async (): Promise<ICar[]> => {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-
         const data: ICar[] = await response.json();
-        console.log("Fetched cars:", data);
         return data;
     } catch (error) {
-        console.error("Failed to fetch cars:", error);
         return [];
     }
 };

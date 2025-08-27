@@ -4,7 +4,6 @@ import {getAllCars} from "@/services/cars-service";
 
 const CarsComponent =async () => {
     const cars= await getAllCars()
-    console.log("🧠 Сторінка з сервера завантажує автівки", cars.length);
     return (
         <ul className="flex flex-wrap justify-center items-center gap-10 mb-10 mt-10">
 
