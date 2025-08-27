@@ -7,7 +7,9 @@ export const getAllCars = async (): Promise<ICar[]> => {
         ? process.env.NEXT_PUBLIC_API_BASE_URL_LOCAL
         : process.env.NEXT_PUBLIC_API_BASE_URL;
 
-    const path = "/cars/api";
+    const path = isLocal
+    ? "/cars/api"
+        : "/cars"
 
     try {
         const response = await fetch(`${baseURL}${path}`, {
