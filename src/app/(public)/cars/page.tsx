@@ -1,4 +1,4 @@
-
+'use client'
 import CarsComponent from "@/components/cars-component/CarsComponent";
 
 
