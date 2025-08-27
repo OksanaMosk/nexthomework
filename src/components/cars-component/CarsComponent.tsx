@@ -1,4 +1,4 @@
-
+'use client'
 import CarComponent from "@/components/car-component/CarComponent";
 import {getAllCars} from "@/services/cars-service";
 
