@@ -27,6 +27,7 @@ export const getAllCars = async (): Promise<ICar[]> => {
         const data: ICar[] = await response.json();
         console.log("Fetched cars:", data);
         console.log("🚗 getAllCars() called");
+        console.log("🧠 Сторінка з сервера завантажує автівки", data.length);
         return data;
 
     } catch (error) {
