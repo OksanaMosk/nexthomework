@@ -10,26 +10,18 @@ export const getAllCars = async (): Promise<ICar[]> => {
     const path = "/cars/api";
 
     try {
-        const response = await fetch("/cars/api", {
+        const response = await fetch(`${baseURL}${path}`, {
             headers: { "Content-Type": "application/json" },
             next: { revalidate: 3 },
         });
-        // const response = await fetch(`${baseURL}${path}`, {
-        //     headers: { "Content-Type": "application/json" },
-        //     next: { revalidate: 3 },
-        // });
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        console.log("Fetching cars from:", `${baseURL}${path}`);
         const data: ICar[] = await response.json();
         console.log("Fetched cars:", data);
-        console.log("🚗 getAllCars() called");
-        console.log("🧠 Сторінка з сервера завантажує автівки", data.length);
         return data;
-
     } catch (error) {
         console.error("Failed to fetch cars:", error);
         return [];
