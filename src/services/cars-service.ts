@@ -26,6 +26,7 @@ export const getAllCars = async (): Promise<ICar[]> => {
         console.log("Fetching cars from:", `${baseURL}${path}`);
         const data: ICar[] = await response.json();
         console.log("Fetched cars:", data);
+        console.log("🚗 getAllCars() called");
         return data;
 
     } catch (error) {
